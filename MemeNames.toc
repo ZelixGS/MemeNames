@@ -1,0 +1,7 @@
+## Interface: 90002
+## Title: Meme Names
+## Notes: Replaces Items/Spells with Meme Names
+## Author: Zelix
+## X-Packaged-Version: v0.19.8
+
+MemeNames.lua

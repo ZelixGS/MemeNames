@@ -13,7 +13,10 @@ local items = {
 	[179331]="God-Shattering Scale", 					-- Blood-Splattered Scale
 	[179350]="Cube of Mana Restoration", 				-- Inscrutable Quantum Device
 	[181501]="Candle of Protagonist Power",				-- Flame of Battle
+	[181502]="Green Gatorade",							-- Rejuvenating Serum
+	[182335]="De Wild Spirits",							-- Spirit Attunement
 	[182448]="Long Horse", 								-- Light's Barding (Conduit)
+	[182464]="Turtle Club",								-- Harmony of the Tortollen
 	[183034]="Cloakwing's Only Loot", 					-- Cowled Batwing Cloak
 	[183035]="I-Buy-PvP-Power Signet", 					-- Arden Sunstar Signet
 	[183894]="Red Marble of Dissappointing Offhand", 	-- Thaumaturgic Anima Bead
@@ -54,6 +57,7 @@ ItemRefShoppingTooltip1:HookScript("OnTooltipSetItem", function(self) ModTooltip
 ItemRefShoppingTooltip2:HookScript("OnTooltipSetItem", function(self) ModTooltip(self, 2); end)
 ShoppingTooltip1:HookScript("OnTooltipSetItem", function(self) ModTooltip(self, 2); end)
 ShoppingTooltip2:HookScript("OnTooltipSetItem", function(self) ModTooltip(self, 2); end)
+GameTooltip.ItemTooltip.Tooltip:HookScript("OnTooltipSetItem", function(self) ModTooltip(self, 1); end)
 
 --[[
 	To Modify Chat Hyper Links, we first pass in a object, event, and message. 
@@ -99,3 +103,4 @@ ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID",ModChat)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_RAID_LEADER",ModChat)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_INSTANCE_CHAT",ModChat)
 ChatFrame_AddMessageEventFilter("CHAT_MSG_INSTANCE_CHAT_LEADER",ModChat)
+ChatFrame_AddMessageEventFilter("CHAT_MSG_LOOT",ModChat)

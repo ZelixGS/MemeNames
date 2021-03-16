@@ -1,4 +1,13 @@
+<<<<<<< Updated upstream
 MemeNames by Zelix-Eldre'Thalas.
+=======
+<<<<<<< HEAD
+#MemeNames 
+Written by Zelix-Eldre'Thalas.
+=======
+MemeNames by Zelix-Eldre'Thalas.
+>>>>>>> 0d315cdd886006b7858ce652bb43ff5815626b25
+>>>>>>> Stashed changes
 
 Renames Items in-game through Addon Functionality to allow Meme-y Names to be displayed instead of regular items names.
 Inspired by nicknaming the Hymnal of the Path to Book of Blasting, Phial to Granny Plague's Bathwater.
@@ -7,6 +16,13 @@ Features:
 * Renames Items.
 * Ability to add Random Name to Items that Changes Each Session.
 * Chat Commands to Rename, Add, Reset, Clear, and Re-Randomize names.
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+* Holding Alt will display the Item's Real Name as well.
+=======
+>>>>>>> 0d315cdd886006b7858ce652bb43ff5815626b25
+>>>>>>> Stashed changes
 	
 Where to find new Names:
 * Item Tooltips
@@ -34,5 +50,15 @@ FAQ:
   * No. This does not modify any files, and it strictly limited to Clients who have this AddOn installed and Enabled. Item Links do not change for other players without this addon. If Blizzard does not like the functionality they're free to break the methods used like previous brokenn addons.
 	
 * Random isn't so Random?
+<<<<<<< Updated upstream
   * While programming this addon I found that when mousing over items in your inventory, character sheet, or inspection, the server seems to continously query the item, firing off multiple events every few seconds causing the Tooltip to jitter with random names. To Prevent this each Random Item is set to one of the Random Names upon seeing the item for the first time. Either Relog, ReloadUI, or type /mn -random, to reroll item names.
   * If I have time, I may add a "chaos" mode that will continously cycle through the names, or eventually I'll make it re-randomize every so often.
+=======
+<<<<<<< HEAD
+  * Mousing Over Tooltips are constantly firing events to pick up if any Modifier Keys are Held Down. This will cause the Tooltip to jitter with random names. To Prevent this each Random Item is set to one of the Random Names upon seeing the item for the first time. Either Relog, ReloadUI, or type /mn -random, to reroll item names.
+  * If I have time, I may add a "chaos" mode that will continously cycle through the names, or eventually I'll make it re-randomize every so often.
+=======
+  * While programming this addon I found that when mousing over items in your inventory, character sheet, or inspection, the server seems to continously query the item, firing off multiple events every few seconds causing the Tooltip to jitter with random names. To Prevent this each Random Item is set to one of the Random Names upon seeing the item for the first time. Either Relog, ReloadUI, or type /mn -random, to reroll item names.
+  * If I have time, I may add a "chaos" mode that will continously cycle through the names, or eventually I'll make it re-randomize every so often.
+>>>>>>> 0d315cdd886006b7858ce652bb43ff5815626b25
+>>>>>>> Stashed changes

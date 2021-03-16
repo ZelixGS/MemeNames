@@ -37,15 +37,29 @@ default_items = {
 items = {}
 ran_names = {}
 
-local function GetNewName(id)
-	if type(items[id]) == "string" then return items[id] end
+
+--[[
+	We Enter this Function under the assumption we already know 100% the ID has a new name.
+	First Determine if it's a Single Item, or Random.
+	If it's Random, we check our ran_names table to see if a value has been generated. If not, we Generate One.
+	Secondly, If we hold down the Alt Key, we add the Real Name in Parenthesis.
+--]]
+local function GetNewName(id, fromChat)
+	local name
+	if type(items[id]) == "string" then 
+		name = items[id] 
+	end
 	if type(items[id]) == "table" then
 		if ran_names[id] == nil then
-			local num = math.random(1, #items[id])
-			ran_names[id] = num
+			ran_names[id] = math.random(1, #items[id])
 		end
-		return items[id][ran_names[id]]
+		name = items[id][ran_names[id]]
 	end
+	if IsAltKeyDown() and not fromChat then
+		local OldName = C_Item.GetItemNameByID(id)
+		name = name.."\n("..OldName..")"
+	end
+	return name
 end
 
 
@@ -60,7 +74,7 @@ local function ModTooltip(tooltip, index)
 	local itemID = tonumber(string.match(link, "item:(%d*)"))
 	
 	if items[itemID] ~= nil then
-		local NewName = GetNewName(itemID)
+		local NewName = GetNewName(itemID, false)
 		local tooltipTitle = _G[tooltip:GetName() .. "TextLeft" .. index]
 		if tooltipTitle then
 			tooltipTitle:SetJustifyH("LEFT")
@@ -89,7 +103,7 @@ GameTooltip.ItemTooltip.Tooltip:HookScript("OnTooltipSetItem", function(self) Mo
 local function EncounterJournalFrame(self)
     local id = self.itemID
 	if items[id] ~= nil then
-		local NewName = GetNewName(id)
+		local NewName = GetNewName(id, false)
 		local Quality = C_Item.GetItemQualityByID(self.link)
 		local Color = ITEM_QUALITY_COLORS[Quality].hex
 		self.name:SetText(Color..NewName)
@@ -116,7 +130,7 @@ local function ModChat(self, event, msg, ...)
 	local msg2 = msg
 	for j, v in ipairs(links) do
 		if items[v] ~= nil then
-			local NewName = GetNewName(v)
+			local NewName = GetNewName(v, true)
 			msg2 = gsub(msg2, C_Item.GetItemNameByID(v), NewName)
 		end
 	end
@@ -160,7 +174,7 @@ SLASH_MEMENAME1 = '/mn'
 function SlashCmdList.MEMENAME(msg, editBox)
 	if string.find(string.upper(msg), "-HELP") then
 		print("MemeNames: To Add a Name, Link an Item and type it's new name afterwards.")
-		print("MemeNames: To Remove a Name, Link Item and Type 'clear' afterwards.")
+		print("MemeNames: To Remove a Name, Link Item and Type '-clear' afterwards.")
 		return
 	end
 	if string.find(string.upper(msg), "-RANDOM") then

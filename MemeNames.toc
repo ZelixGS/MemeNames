@@ -1,5 +1,6 @@
 ## Interface: 90002
 ## Title: Meme Names
+## SavedVariables: items
 ## Notes: Replaces Items/Spells with Meme Names
 ## Author: Zelix
 ## X-Packaged-Version: v0.19.8

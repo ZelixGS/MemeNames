@@ -1,6 +1,5 @@
-
-#MemeNames 
-Written by Zelix-Eldre'Thalas.
+# MemeNames 
+Written by _Zelix-Eldre'Thalas_.
 
 Renames Items in-game through Addon Functionality to allow Meme-y Names to be displayed instead of regular items names.
 Inspired by nicknaming the Hymnal of the Path to Book of Blasting, Phial to Granny Plague's Bathwater.

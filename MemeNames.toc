@@ -1,4 +1,4 @@
-## Interface: 90002
+## Interface: 90200
 ## Title: Meme Names
 ## SavedVariables: items
 ## Notes: Replaces Items/Spells with Meme Names

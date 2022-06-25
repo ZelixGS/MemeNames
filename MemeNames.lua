@@ -1,6 +1,6 @@
 default_items = {
 	[1]="Addon Loading Bool", -- Used to Check if Addon has loaded defaults before, not an actual item ID.
-	
+
 	--[<Item ID>]="<New Name>", -- Old Item Name
 	--Test Items
 	[39398]="Massive Cupsholder", 						-- Massive Skeletal Ribage
@@ -8,7 +8,7 @@ default_items = {
 
 	--The Burning Crusader
 	[32757]="Medallion of the Tryhard Crusader", 		-- Blessed Medallion of Karabor
-	
+
 	--Warlords of Draenor
 	[109997]="Injector of Bombing Mk2",					-- Kihra's Adrenaline Injector
 	[110017]="Ambassador Pineapple", 					-- Enforcer's Stun Grenade
@@ -18,8 +18,7 @@ default_items = {
 	[137537]="Sleeper Tank Trinket",					-- Tirathon's Betrayal
 	[137539]="Icyhot",									-- Faulty Countermeasure
 	[137541]="Moonlit Middlefinger",					-- Moonlit Prism
-	
-	
+
 	--Shadowlands
 	[172051]="Steak and Mash", 							-- Steak a la Mode
 	[178708]="Hedgehog of Dubious Speed", 				-- Unbound Changeling
@@ -41,27 +40,27 @@ default_items = {
 	[184020]="Phoenix Down", 							-- Tuft of Smoldering Plumage
 	[184024]={"Art Degree", "Toilet Paper"},			-- Macabre Sheet Music (First Random Item! 3/10/21)
 	[184026]="Ozma's Keelhauling Chain", 				-- Hateful Chain
-	[184031]={"Get you some Sip", "Cum Chalice"},		-- Sanguine Vintage (Named by Kalcifur)
+	[184031]="Yandare Chalice",							-- Sanguine Vintage
 	[184840]="Book of Blasting Mk2", 					-- Hymnal of the Path
 	[184842]="Bell of Bombing", 						-- Instructor's Divine Bell
-	
+
 	-- 9.1 Items
-	--[186423]={"Worthy Eye of the Raidleader", "Unworthy Eye of the Raidleader"},		-- Titanic Ocular Gland
-	[186424]="Shard of Analhyde's Assgis",				-- Shard of Annhylde's Aegis
+	[186423]={"Worthy Eye of the Raidleader", "Unworthy Eye of the Raidleader"},		-- Titanic Ocular Gland
+	[186424]="Godmode",									-- Shard of Annhylde's Aegis
 	[186428]="Ponderous Orb of Torment",				-- Shadowed Orb of Torment
 	[186433]="Thorncoat", 								-- Reactive Defense Matrix
 	[187542]="Ozmthys, the Devouring Blade",			-- Jaithys, The Prison Blade
 	[186410]="Ozmthys, the Devouring Blade",			-- Jaithys, The Prison Blade (Again)
 	[186398]="Edge of Viability", 						-- Edge of Night
 	[186414]="Some bit of garbage",						-- Rae'shalare, Death's Whisper
-	[186438]="Orc yelling 'KEEP PULLING'",				-- Old Warrior's Soul		
+	[186438]="Orc yelling 'KEEP PULLING'",				-- Old Warrior's Soul
 	[185783]="The REAL Legendary Bow",					-- Yasahm the Riftbreaker
 	[185818]="So'leah's Simping Technique", 			-- So'leah's Secret Technique
 	[185836]="Book of Blocking Mk12",					-- Codex of the First Technique
 	[190958]="So'leah's Simping Technique", 			-- So'leah's Secret Technique(There is 2 instances of this Item for Some Reason)
 
 	-- 9.2 Items
-	[188267]="Levithan's Lure Mk-2",					-- Bells of the Endless Feast
+	[188267]="Levithan's Lure but worse",				-- Bells of the Endless Feast
 	[188265]="Cache of No Axes?",						-- Cache of Acquired Treasures
 	[188266]="Ant-Squishing Riftshard",					-- Pulsating Riftshard
 	[188272]="Healer Trinket",							-- Resonant
@@ -217,17 +216,22 @@ local function ModChat(self, event, msg, ...)
 	for j, v in ipairs(links) do
 		local id = GetIDFromLink(v)
 		local NewName = C_Item.GetItemNameByID(id)
-		local Prefix = isGiga(GetDetailedItemLevelInfo(v))
-
-		if items[id] ~= nil then
-			NewName = GetNewName(id, true)
+		-- Condition to stop breaking when items that are not cached are linked in chat. 
+		-- Happens often on max level characters who haven't visited vanilla zones in awhile lol. 6/17/22
+		if NewName ~= nil then
+			local OldName = NewName
+			local Prefix = isGiga(GetDetailedItemLevelInfo(v))
+			
+			if items[id] ~= nil then
+				NewName = GetNewName(id, true)
+			end
+			
+			if Prefix ~= nil then
+				NewName = Prefix..NewName
+			end
+			
+			msg2 = gsub(msg2, OldName, NewName)
 		end
-
-		if Prefix ~= nil then
-			NewName = Prefix..NewName
-		end
-
-		msg2 = gsub(msg2, C_Item.GetItemNameByID(id), NewName)
 	end
 	return false, msg2, ...
 end
